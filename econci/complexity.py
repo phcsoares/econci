@@ -158,6 +158,7 @@ class Complexity():
         kp0 = self.__ubiquity
         phi = self.__m_cp.T.dot(self.__m_cp)
         phi_pp = phi.apply(lambda x: x/np.maximum(kp0.loc[x.name], kp0.loc[x.index]))
+        np.fill_diagonal(phi_pp.values, 0)
         self.__proximity = phi_pp
 
     def __calc_density(self):
@@ -227,3 +228,12 @@ class Complexity():
     @property
     def distance(self):
         return self.__distance
+
+    def __calculate_weights(self):
+        pass
+
+    def __filter_edges(self, thresh=.5):
+        pass
+
+    def generate_graph(self, edge_weight_thresh=.5):
+        pass
