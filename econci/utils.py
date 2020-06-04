@@ -8,7 +8,7 @@ def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
 
     Parameters
     ----------
-    graph : nx.Graph
+    graph : networkx.Graph
         Graph to be saved.
     graph_name : str
         Name of the graph.
