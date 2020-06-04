@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from scipy import linalg
 from sklearn.preprocessing import scale
+import networkx as nx
 
 class Complexity():
     '''
@@ -188,6 +189,31 @@ class Complexity():
         self.__calc_density()
         self.__calc_distance()
 
+    def __generate_graphs(self):
+        '''
+        Creates the complete graph from the proximity matrix and finds its
+        maximum spanning tree.
+        '''
+        self.__complete_graph = nx.from_pandas_adjacency(self.__proximity)
+        self.__maxst = nx.maximum_spanning_tree(self.__complete_graph)
+    
+    def create_product_space(self, edge_weight_thresh=0.65):
+        '''
+        Creates the product space
+
+        Parameters
+        ----------
+        edge_weight_thresh : float, optional
+            Wheight threshold for extra edges to be added to the maximum
+            spanning tree, by default 0.65
+        '''
+        if not hasattr(self, '__complete_graph'):
+            self.__generate_graphs()
+        
+        self.__product_space = self.__maxst.copy()
+        for e in self.__complete_graph.edges(data=True):
+            if (e not in self.__product_space.edges()) and (e[2]['weight'] > edge_weight_thresh):
+                self.__product_space.add_edges_from([e])
 
     @property
     def m(self):
@@ -229,11 +255,14 @@ class Complexity():
     def distance(self):
         return self.__distance
 
-    def __calculate_weights(self):
-        pass
+    @property
+    def complete_graph(self):
+        return self.__complete_graph
 
-    def __filter_edges(self, thresh=.5):
-        pass
+    @property
+    def maxst(self):
+        return self.__maxst
 
-    def generate_graph(self, edge_weight_thresh=.5):
-        pass
+    @property
+    def product_space(self):
+        return self.__product_space
