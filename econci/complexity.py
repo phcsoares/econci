@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-from scipy import linalg
-from sklearn.preprocessing import scale
 import networkx as nx
 
 class Complexity():
@@ -121,13 +119,10 @@ class Complexity():
         
         m_tilda_cc = ((self.__m_cp).dot((self.__m_cp/kp0).T) / kc0).T
 
-        _, vecs_c = linalg.eig(m_tilda_cc)
-        eci = np.real(vecs_c[:,1:2])
-        eci = scale(eci[:, 0:1], 
-                    axis=0, 
-                    with_mean=True, 
-                    with_std=True, 
-                    copy=True)
+        vals_c, vecs_c = np.linalg.eig(m_tilda_cc)
+        ind = vals_c.argsort()[-2]
+        eci = np.real(vecs_c[:,ind])
+        eci = (eci - eci.mean())/eci.std()
         eci = pd.DataFrame(eci, index=self.__m_cp.index, columns=["eci"])
 
         self.__eci = self.__fix_sign(kc0, eci)
@@ -141,13 +136,10 @@ class Complexity():
 
         m_tilda_pp = ((self.__m_cp.T).dot((self.__m_cp.T/kc0).T) / kp0).T
 
-        _, vecs_p = linalg.eig(m_tilda_pp)
-        pci = np.real(vecs_p[:,1:2])
-        pci = scale(pci[:, 0:1], 
-                    axis=0, 
-                    with_mean=True, 
-                    with_std=True, 
-                    copy=True)
+        vals_p, vecs_p = np.linalg.eig(m_tilda_pp)
+        ind = vals_p.argsort()[-2]
+        pci = np.real(vecs_p[:,ind])
+        pci = (pci - pci.mean())/pci.std()
         pci = pd.DataFrame(pci, index=self.__m_cp.columns, columns=["pci"])
 
         self.__pci = self.__fix_sign(kp0, pci) * (-1)  # Falta ser verificado
