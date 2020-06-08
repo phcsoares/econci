@@ -14,13 +14,19 @@ Calculates Economic Complexity Indexes
 
 * Free software: MIT license
 
-This package implements the indexes found in the Atlas of Economic Complexity [HaRH2014]_.
+This package implements the indexes found in the Atlas of Economic Complexity [HaRH2014]_, [HiCH2009]_ and [HiCK2007]_.
 It also creates the Product Space.
 
 Installation
 ------------
 
+:code:`econci` can be installed from PyPI::
+
         pip install econci
+
+or from Anaconda::
+
+        conda install -c phcsoares econci
 
 Usage
 -----
@@ -52,7 +58,7 @@ Complete list of calculated indexes:
 * Product Complexity Index: :code:`comp.pci`
 * Country Diversity: :code:`comp.diversity`
 * Product Ubiquity: :code:`comp.ubiquity`
-* Balassa's RCA: :code:`comp.rca`
+* Balassa's RCA [BaBN1989]_: :code:`comp.rca`
 * Proximity: :code:`comp.proximity`
 * Density: :code:`comp.density`
 * Distance: :code:`comp.distance`
@@ -67,6 +73,10 @@ References
 ----------
 
 .. [HaRH2014] Hausmann, R., Hidalgo, C. A., Bustos, S., Coscia, M., Chung, S., Jimenez, J., … Yildirim, M. A. (2014). The Atlas of Economic Complexity: Mapping Paths to Prosperity. MIT Press.
+.. [HiCH2009] Hidalgo, C. A., & Hausmann, R. (2009). The building blocks of economic complexity. Proceedings of the national academy of sciences, 106(26), 10570-10575.
+.. [HiCK2007] Hidalgo, C. A., Klinger, B., Barabási, A. L., & Hausmann, R. (2007). The product space conditions the development of nations. Science, 317(5837), 482-487.
+.. [BaBN1989] Balassa, B., & Noland, M. (1989). ``Revealed''Comparative Advantage in Japan and the United States. Journal of International Economic Integration, 8-22.
+
 
 Credits
 -------
