@@ -6,17 +6,10 @@ econci
 .. image:: https://img.shields.io/pypi/v/econci.svg
         :target: https://pypi.python.org/pypi/econci
 
-.. image:: https://img.shields.io/travis/phcsoares/econci.svg
-        :target: https://travis-ci.com/phcsoares/econci
-
-.. image:: https://readthedocs.org/projects/econci/badge/?version=latest
-        :target: https://econci.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
 
 
 
-
-"Calculates Economic Complexity Indexes"
+Calculates Economic Complexity Indexes
 
 
 * Free software: MIT license
