@@ -58,7 +58,7 @@ Complete list of calculated indexes:
 * Product Complexity Index: :code:`comp.pci`
 * Country Diversity: :code:`comp.diversity`
 * Product Ubiquity: :code:`comp.ubiquity`
-* Balassa's RCA [BaBN1989]: :code:`comp.rca`
+* Balassa's RCA [BaBN1989]_: :code:`comp.rca`
 * Proximity: :code:`comp.proximity`
 * Density: :code:`comp.density`
 * Distance: :code:`comp.distance`
