@@ -39,7 +39,7 @@ Usage
         
         # the graphs are networkx.Graph objects
         complete_graph = comp.complete_graph  # complete product space
-        max_spanning_tree = prod_space = comp.maxst  # maximum spanning tree
+        max_spanning_tree = comp.maxst  # maximum spanning tree
         prod_space = comp.product_space  # product space
 
         # edges_nodes_to_csv saves one csv file with edges and weights
