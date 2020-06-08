@@ -20,13 +20,30 @@ econci
 
 
 * Free software: MIT license
-* Documentation: https://econci.readthedocs.io.
+
+This package implements the indexes found in the Atlas of Economic Complexity [HaRH2014]_.
+
+Usage
+-----
+
+.. code-block:: python
+
+        import econci
+        
+        comp = econci.Complexity(df, c='country', p='product', values='export')
+        comp.calculate_indexes()
+        eci = comp.eci
+        pci = comp.pci
+
+        comp.create_product_space()
+        prod_space = com.product_space
+        econci.edges_nodes_to_csv(prod_space, graph_name='prod_space', dir_path='./data/')
 
 
-Features
---------
+References
+----------
 
-* TODO
+.. [HaRH2014] Hausmann, R., Hidalgo, C. A., Bustos, S., Coscia, M., Chung, S., Jimenez, J., … Yildirim, M. A. (2014). The Atlas of Economic Complexity: Mapping Paths to Prosperity. MIT Press.
 
 Credits
 -------
