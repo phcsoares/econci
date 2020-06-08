@@ -226,6 +226,22 @@ class Complexity():
         return self.__m_cp_thresh
 
     @property
+    def c(self):
+        return self.__c
+    
+    @property
+    def p(self):
+        return self.__p
+    
+    @property
+    def values(self):
+        return self.__values
+    
+    @property
+    def m_cp_thresh(self):
+        return self.__m_cp_thresh
+
+    @property
     @check_if_indexes
     def m(self):
         return self.__m.copy()
