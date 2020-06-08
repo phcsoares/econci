@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
-# import sys
-# sys.path.append('/media/D/Documents/github/econci/econci')
 from .utils import check_if_indexes, check_if_graph
 
 class Complexity():
