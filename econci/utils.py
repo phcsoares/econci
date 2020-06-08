@@ -1,6 +1,6 @@
 import pandas as pd
 import networkx as nx
-
+import functools
 
 def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
     '''
@@ -30,5 +30,20 @@ def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
     edges.to_csv(edges_path, index=False)
     nodes.to_csv(nodes_path, index=False)
 
-def graph_to_gephi(self, graph, path : str):
-    pass
+def check_if_indexes(func):
+    @functools.wraps(func)
+    def decor_check(self, *args, **kwargs):
+        if hasattr(self, '_Complexity__m'):
+            return func(self, *args, **kwargs)
+        else:
+            raise Exception('First, calculate indexes!')
+    return decor_check
+
+def check_if_graph(func):
+    @functools.wraps(func)
+    def decor_check(self, *args, **kwargs):
+        if hasattr(self, '_Complexity__complete_graph'):
+            return func(self, *args, **kwargs)
+        else:
+            raise Exception('First, create the Product Space!')
+    return decor_check

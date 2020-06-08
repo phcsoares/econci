@@ -1,2 +1,0 @@
-# econci
-Economic Complexity Indexes

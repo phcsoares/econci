@@ -1,8 +1,9 @@
 import pandas as pd
 import numpy as np
-from scipy import linalg
-from sklearn.preprocessing import scale
 import networkx as nx
+# import sys
+# sys.path.append('/media/D/Documents/github/econci/econci')
+from .utils import check_if_indexes, check_if_graph
 
 class Complexity():
     '''
@@ -76,8 +77,6 @@ class Complexity():
         m_cp = m_cp.loc[(m_cp != 0).all(axis=1).index]
         self.__m_cp = m_cp
 
-    # TODO: verificar o fix_sign, está funcionando com eci mas é o contrário com o pci
-
     def __fix_sign(self, k, ci):
         '''
         Fixes the sign of a complexity index.
@@ -121,13 +120,10 @@ class Complexity():
         
         m_tilda_cc = ((self.__m_cp).dot((self.__m_cp/kp0).T) / kc0).T
 
-        _, vecs_c = linalg.eig(m_tilda_cc)
-        eci = np.real(vecs_c[:,1:2])
-        eci = scale(eci[:, 0:1], 
-                    axis=0, 
-                    with_mean=True, 
-                    with_std=True, 
-                    copy=True)
+        vals_c, vecs_c = np.linalg.eig(m_tilda_cc)
+        ind = vals_c.argsort()[-2]
+        eci = np.real(vecs_c[:,ind])
+        eci = (eci - eci.mean())/eci.std()
         eci = pd.DataFrame(eci, index=self.__m_cp.index, columns=["eci"])
 
         self.__eci = self.__fix_sign(kc0, eci)
@@ -141,16 +137,13 @@ class Complexity():
 
         m_tilda_pp = ((self.__m_cp.T).dot((self.__m_cp.T/kc0).T) / kp0).T
 
-        _, vecs_p = linalg.eig(m_tilda_pp)
-        pci = np.real(vecs_p[:,1:2])
-        pci = scale(pci[:, 0:1], 
-                    axis=0, 
-                    with_mean=True, 
-                    with_std=True, 
-                    copy=True)
+        vals_p, vecs_p = np.linalg.eig(m_tilda_pp)
+        ind = vals_p.argsort()[-2]
+        pci = np.real(vecs_p[:,ind])
+        pci = (pci - pci.mean())/pci.std()
         pci = pd.DataFrame(pci, index=self.__m_cp.columns, columns=["pci"])
 
-        self.__pci = self.__fix_sign(kp0, pci) * (-1)  # Falta ser verificado
+        self.__pci = self.__fix_sign(kp0, pci) * (-1)  # PCI is negatively correlated with ubiquity
 
     def __calc_proximity(self):
         '''
@@ -197,6 +190,7 @@ class Complexity():
         self.__complete_graph = nx.from_pandas_adjacency(self.__proximity)
         self.__maxst = nx.maximum_spanning_tree(self.__complete_graph)
     
+    @check_if_indexes
     def create_product_space(self, edge_weight_thresh=0.65):
         '''
         Creates the product space
@@ -216,53 +210,82 @@ class Complexity():
                 self.__product_space.add_edges_from([e])
 
     @property
+    def c(self):
+        return self.__c
+    
+    @property
+    def p(self):
+        return self.__p
+    
+    @property
+    def values(self):
+        return self.__values
+    
+    @property
+    def m_cp_thresh(self):
+        return self.__m_cp_thresh
+
+    @property
+    @check_if_indexes
     def m(self):
-        return self.__m
+        return self.__m.copy()
 
     @property
+    @check_if_indexes
     def rca(self):
-        return self.__rca
+        return self.__rca.copy()
 
     @property
+    @check_if_indexes
     def m_cp(self):
-        return self.__m_cp
+        return self.__m_cp.copy()
 
     @property
+    @check_if_indexes
     def diversity(self):
-        return self.__diversity
+        return self.__diversity.to_frame('diversity').reset_index().copy()
 
     @property
+    @check_if_indexes
     def ubiquity(self):
-        return self.__ubiquity
+        return self.__ubiquity.to_frame('ubiquity').reset_index().copy()
 
     @property
+    @check_if_indexes
     def eci(self):
-        return self.__eci
+        return self.__eci.reset_index().copy()
 
     @property
+    @check_if_indexes
     def pci(self):
-        return self.__pci
+        return self.__pci.reset_index().copy()
 
     @property
+    @check_if_indexes
     def proximity(self):
-        return self.__proximity
+        return self.__proximity.copy()
 
     @property
+    @check_if_indexes
     def density(self):
-        return self.__density
+        return self.__density.copy()
 
     @property
+    @check_if_indexes
     def distance(self):
-        return self.__distance
+        return self.__distance.copy()
 
     @property
+    @check_if_graph
     def complete_graph(self):
         return self.__complete_graph
 
     @property
+    @check_if_graph
     def maxst(self):
         return self.__maxst
 
     @property
+    @check_if_graph
     def product_space(self):
         return self.__product_space
