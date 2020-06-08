@@ -10,7 +10,11 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = [
+    'pandas>=0.25.0',
+    'numpy>=1.18.1',
+    'networkx>=2.4',
+]
 
 setup_requirements = [ ]
 
@@ -31,7 +35,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description=""Calculates Economic Complexity Indexes"",
+    description="Calculates Economic Complexity Indexes",
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
