@@ -20,10 +20,12 @@ It also creates the Product Space.
 Installation
 ------------
 
-:code:`econci` can be installed from PyPI:
+:code:`econci` can be installed from PyPI::
+
         pip install econci
 
-or from Anaconda:
+or from Anaconda::
+
         conda install -c phcsoares econci
 
 Usage
