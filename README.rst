@@ -23,6 +23,11 @@ econci
 
 This package implements the indexes found in the Atlas of Economic Complexity [HaRH2014]_.
 
+Installation
+------------
+
+        pip install econci
+
 Usage
 -----
 
