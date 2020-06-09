@@ -26,7 +26,7 @@ Installation
 
 or from Anaconda::
 
-        conda install -c phcsoares econci
+        conda install -c conda-forge econci
 
 Usage
 -----
