@@ -133,3 +133,7 @@ dmypy.json
 **.vscode/*
 .vscode/*
 .vscode
+
+# jupyter notebooks
+**.ipynb_checkpoints/*
+**.ipynb
