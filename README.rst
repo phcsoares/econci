@@ -5,9 +5,10 @@ econci
 
 .. image:: https://img.shields.io/pypi/v/econci.svg
         :target: https://pypi.python.org/pypi/econci
-
-
-
+.. image:: https://img.shields.io/pypi/pyversions/econci?style=flat
+        :target: https://pypi.python.org/pypi/econci
+.. image:: https://img.shields.io/github/license/phcsoares/econci
+        :target: LICENSE
 
 Calculates Economic Complexity Indexes
 
