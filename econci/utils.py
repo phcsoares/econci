@@ -33,7 +33,7 @@ def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
 def check_if_indexes(func):
     @functools.wraps(func)
     def decor_check(self, *args, **kwargs):
-        if hasattr(self, '_Complexity__m'):
+        if hasattr(self, '_m'):
             return func(self, *args, **kwargs)
         else:
             raise Exception('First, calculate indexes!')
@@ -42,7 +42,7 @@ def check_if_indexes(func):
 def check_if_graph(func):
     @functools.wraps(func)
     def decor_check(self, *args, **kwargs):
-        if hasattr(self, '_Complexity__complete_graph'):
+        if hasattr(self, '_complete_graph'):
             return func(self, *args, **kwargs)
         else:
             raise Exception('First, create the Product Space!')
