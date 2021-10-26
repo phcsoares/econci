@@ -1,21 +1,28 @@
-#!/usr/bin/env python
+import pytest
+from unittest.mock import Mock
 
-"""Tests for `econci` package."""
+import pandas as pd
 
-
-import unittest
-
-from econci import econci
+from econci import Complexity
 
 
-class TestEconci(unittest.TestCase):
-    """Tests for `econci` package."""
+class TestComplexity():
 
-    def setUp(self):
-        """Set up test fixtures, if any."""
+    def test_initialization(self):
+        df = pd.DataFrame()
+        c = 'country'
+        p = 'product'
+        values = 'export'
+        m_cp_thresh = 0.5
 
-    def tearDown(self):
-        """Tear down test fixtures, if any."""
+        comp = Complexity(df, c, p, values, m_cp_thresh)
 
-    def test_000_something(self):
-        """Test something."""
+        assert comp._df.equals(df)
+        assert comp._c == c
+        assert comp._p == p
+        assert comp._values == values
+        assert comp._m_cp_thresh == m_cp_thresh
+
+        # test check_df
+        with pytest.raises(TypeError):
+            comp = Complexity(None, c, p, values, m_cp_thresh)
