@@ -3,7 +3,7 @@ import networkx as nx
 import functools
 
 
-def edges_nodes_to_csv(graph: nx.Graph, graph_name: str, dir_path: str):
+def edges_nodes_to_csv(graph: nx.Graph, graph_name: str, dir_path: str) -> None:
     '''
     Saves two csv files, one with the edges and another with the nodes information.
 
