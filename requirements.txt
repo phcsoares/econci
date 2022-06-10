@@ -1,3 +1,0 @@
-pandas==0.25.0
-numpy==1.18.1
-networkx==2.4
