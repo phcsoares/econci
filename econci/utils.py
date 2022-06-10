@@ -2,7 +2,8 @@ import pandas as pd
 import networkx as nx
 import functools
 
-def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
+
+def edges_nodes_to_csv(graph: nx.Graph, graph_name: str, dir_path: str) -> None:
     '''
     Saves two csv files, one with the edges and another with the nodes information.
 
@@ -30,6 +31,7 @@ def edges_nodes_to_csv(graph, graph_name : str, dir_path : str):
     edges.to_csv(edges_path, index=False)
     nodes.to_csv(nodes_path, index=False)
 
+
 def check_if_indexes(func):
     @functools.wraps(func)
     def decor_check(self, *args, **kwargs):
@@ -38,6 +40,7 @@ def check_if_indexes(func):
         else:
             raise Exception('First, calculate indexes!')
     return decor_check
+
 
 def check_if_graph(func):
     @functools.wraps(func)
