@@ -54,7 +54,7 @@ test: ## run tests quickly with the default Python
 	@poetry run pytest -vv --cov tests
 
 coverage: ## check code coverage quickly with the default Python
-	@poetry run pytest --cov=econci --cov-report=xml --cov-report=term-missing tests
+	@poetry run pytest --cov=econci --cov-report=term-missing tests
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/econci.rst
@@ -83,8 +83,8 @@ bump-major:					## Bump version to next major
 prerelease:					## Create prerelase version
 	@poetry version prerelease
 
-publish: build check-env			## Publish new version to internal pypi (nexus)
-	@poetry run twine upload dist/* --verbose
+publish: build			## Publish new version to internal pypi (nexus)
+	@poetry publish
 
 dependencies:
 	@poetry install --no-dev
