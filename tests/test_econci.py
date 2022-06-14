@@ -41,14 +41,8 @@ class TestComplexity():
 
         assert comp.m.equals(correct_m_stub)
         assert comp.rca.round(4).equals(correct_rca_stub)
-        # assert comp.m_cp.round(4).equals(correct_m_cp_stub)
-        # assert comp.diversity.round(4).equals(correct_diversity_stub)
-        # assert comp.ubiquity.round(4).equals(correct_ubiquity_stub)
-        # assert comp.eci.round(4).equals(correct_eci_stub)
-        # assert comp.pci.round(4).equals(correct_pci_stub)
-        # assert comp.proximity.round(4).equals(correct_proximity_stub)
-        # assert comp.density.round(4).equals(correct_density_stub)
-        # assert comp.distance.round(4).equals(correct_distance_stub)
+        assert list(comp.eci['eci'].round(3).values) == [0.707, 0.707, -1.414]
+        assert list(comp.pci['pci'].round(3).values) == [1.414, -0.707, -0.707]
 
     def test_create_product_space(
         self,
