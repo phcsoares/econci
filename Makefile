@@ -51,10 +51,10 @@ lint: ## check style with flake8
 	@poetry run flake8 econci tests --statistics
 
 test: ## run tests quickly with the default Python
-	@poetry run pytest -vv --cov tests
+	@poetry run pytest -vv
 
 coverage: ## check code coverage quickly with the default Python
-	@poetry run pytest --cov=econci --cov-report=term-missing tests
+	@poetry run pytest -vv --cov=econci --cov-report=term-missing tests
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/econci.rst
